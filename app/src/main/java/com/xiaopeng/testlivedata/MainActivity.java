@@ -1,6 +1,9 @@
 package com.xiaopeng.testlivedata;
 
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleObserver;
 import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.OnLifecycleEvent;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -78,6 +81,47 @@ public class MainActivity extends AppCompatActivity {
             }
         },500,1000, TimeUnit.MILLISECONDS);
 
+        getLifecycle().addObserver(new LifecycleObserver() {
+
+            private static final String TAG = "LifeCycle";
+
+            @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+            public void onCreate(){
+                Log.d(TAG,"the activity is created");
+            }
+
+            @OnLifecycleEvent(Lifecycle.Event.ON_START)
+            public void onStart(){
+                Log.d(TAG,"the activity is started");
+
+            }
+            @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+            public void onResume(){
+                Log.d(TAG,"the activity is resumed");
+            }
+
+            @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+            public void onPause(){
+                Log.d(TAG,"the activity is paused");
+            }
+
+            @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+            public void onStop(){
+                Log.d(TAG, "the activity is stopped");
+            }
+
+            @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+            public void onDestroy(){
+                Log.d(TAG,"the activity is destroyed");
+            }
+
+            @OnLifecycleEvent(Lifecycle.Event.ON_ANY)
+            public void onAny(){
+                Log.d(TAG, "the activity is onAny");
+            }
+
+
+        });
 
     }
 
